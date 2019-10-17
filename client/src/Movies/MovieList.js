@@ -20,8 +20,19 @@ export default class MovieList extends Component {
         this.props.setMovies(res.data)
       ))
       .catch(err => console.log(err.response));
+    
   }
 
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.movies !== this.props.movies){
+      this.setState({
+      movies: this.props.movies
+      })
+    }
+  }
+  
+
+  
   render() {
     
     return (
