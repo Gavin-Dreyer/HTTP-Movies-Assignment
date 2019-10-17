@@ -13,20 +13,19 @@ const App = () => {
   };
 
   const [movies, setMovies] = useState([])
-  const [updatedMovies, setUpdatedMovies] = useState([])
   console.log(movies)
 
   return (
     <>
       <SavedList list={savedList} />
-      <Route exact path="/" render={() => <MovieList updatedMovies={updatedMovies} movies={movies} setMovies={setMovies}/>}  />
+      <Route exact path="/" render={() => <MovieList movies={movies} setMovies={setMovies}/>}  />
       <Route
         path="/movies/:id"
         render={props => {
-          return <Movie {...props} addToSavedList={addToSavedList} />;
+          return <Movie {...props} movies={movies} setMovies={setMovies} addToSavedList={addToSavedList} />;
         }}
       />
-      <Route path='/update-movie/:id' render={props => <UpdateMovie {...props}movies={movies} setMovies={setMovies} setUpdatedMovies={setUpdatedMovies} />}  
+      <Route path='/update-movie/:id' render={props => <UpdateMovie {...props}movies={movies} setMovies={setMovies} />}  
       />
     </>
   );
